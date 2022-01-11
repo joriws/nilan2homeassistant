@@ -91,6 +91,20 @@ def ha_uniqueid():
 
 HA_UNIQUEID = os.getenv("HA_UID", ha_uniqueid())
 
+def processGroups():
+    registerTypes={}
+    for r in registers:
+        registerTypes[r['type']]=1
+    
+    for g in groups:
+        g['items']={}
+        for t in registerTypes.keys():
+            g['items'][t]=0
+        
+        for i in registers:
+            if (int(i['address']) >= int(g['address'])) and (int(i['address']) < (int(g['address'])+100)):
+                g['items'][i['type']] = g['items'][i['type']] + 1
+        
 def cachedirty(index,value):
     if index not in CACHE or index in CACHE and CACHE[index] != value:
         CACHE[index] = value
@@ -105,17 +119,18 @@ def lcdascii(byte):
     else:
         return chr(byte)
 
-def fetchMulti(nilan, start, amount):
+def fetchMulti(nilan, type, start, amount):
+    fc=4 if type == 'Input' else 3
     try:
-        nilan.debug = True
+        #nilan.debug = True
         #returnarray = nilan._performCommand(3, '\x00\xC8\x00\x12')
-        returnarray = nilan.read_registers(200, 23, 4)
+        returnarray = nilan.read_registers(start, amount, fc)
         pprint(returnarray)
     except IOError:
         print("Failed to multi-read from instruments.")
         return None
     
-    nilan.debug = MB_DEBUG
+    #nilan.debug = MB_DEBUG
 
 
 def fetch(nilan, reg):
@@ -165,9 +180,15 @@ def getAllGrouped(nilan):
 
     for g in groups:
         print("group: " + g['name'])
+        pprint(g)
+        
+        for t in dict(g['items']).keys():
+            print("\ttype: " + t)
 
-        fetchMulti(nilan,200,18)
-        sys.exit(0)
+            if g['items'][t] > 0:
+                fetchMulti(nilan,t,g['address'],g['items'][t])
+    
+    sys.exit(0)
 
 
 
@@ -179,6 +200,9 @@ if __name__ == "__main__":
 
     print("Starting Nilan to HA MQTT bus with HA unique id", HA_UNIQUEID)
     #getUSBserial()
+
+    # organize groups for multifetch
+    processGroups()
 
     try: 
         nilan = minimalmodbus.Instrument(MB_PORT, MB_ADDRESS, mode='rtu')
