@@ -123,12 +123,12 @@ def fetchMulti(nilan, type, start, amount):
     fc=4 if type == 'Input' else 3
     try:
         #nilan.debug = True
-        #returnarray = nilan._performCommand(3, '\x00\xC8\x00\x12')
         returnarray = nilan.read_registers(start, amount, fc)
-        pprint(returnarray)
     except IOError:
         print("Failed to multi-read from instruments.")
         return None
+
+    pprint(returnarray)
     
     #nilan.debug = MB_DEBUG
 
@@ -146,7 +146,7 @@ def fetch(nilan, reg):
         print("Failed to read from instrument.")
         return None
 
-    # to suppress data vs usability I think I am fined with 1 digit resolution
+    # to suppress data vs usability I think I am fine with 1 digit resolution
     if nod > 0:
         rawvalue = round(rawvalue,1)
     
