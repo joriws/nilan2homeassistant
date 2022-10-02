@@ -75,5 +75,6 @@ There might be bugs on picture card or in modbus-package, please report or creat
 - Home assistant and mbusd have some glitches and sensors might show "Unavailable". It will go away. It might be due to multithreaded architecture of mbusd which causes queries on top of each other. Some pages suggest "slave_sensor" configuration at Home Assistant's modbus configuration.
 - Raspberry might loose Wi-Fi connectivity - consult Raspbian for fixes
 - MDI icon set does not have icon for fan speed 4, so fan plus was used. On my setup fan speeds 1-3 are configured.
+- Picture-element-card was developed on PC browser. Android phone homeassistant app has problems displaying the graph.
 
 
