@@ -1,5 +1,5 @@
 type: picture-elements
-image: http://homeassistant.local:8123/local/NilanEC.svg
+image: /local/NilanEC.svg
 elements:
   - type: icon
     icon: mdi:fan
@@ -156,7 +156,7 @@ elements:
   - type: conditional
     conditions:
       - entity: sensor.nilanec_output_defrosting
-        state_not: '0'
+        state: '1'
     elements:
       - type: icon
         icon: mdi:snowflake-melt
