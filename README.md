@@ -44,6 +44,7 @@ If everything works you should see following without Nilan power/energy consumpt
 - It would be nice to be able to combine modbus sensors into sensor attributes. Like hotwater bottom sensor would have attribute hotwater compressor setting when compressor can turn off. There could be a lot of combining of data.
 - Picture-element-card Climate - I could not make it work.
 - Other HA-based setting over modbus, like set fan speed by automation or requested temperature.
+- Icon coloring based on state
 
 ### Bugs
 
