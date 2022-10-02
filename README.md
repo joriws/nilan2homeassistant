@@ -9,13 +9,16 @@ This repository contains Home Assistant configuration files and information how 
 ![Architecture](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/HA-comms.svg)
 
 ## Modbus gateway installation:
-1. Install mbusd gateway software into gateway hardware; I use Raspberry Pi Zero W with Raspbian. Other Linux computer should be fine.
-2. Connect USB/RS-485 adapter to Nilan controller board and Raspberry
-3. Configure mbusd, I used systemctl service option to load on boot. Configure port if other than /dev/ttyUSB0
-4. Start mbusd
+1. Install mbusd gateway software into gateway hardware; I use Raspberry Pi Zero W with Raspbian. Other Linux computer should be fine. Use mbusd instructions.
+2. Copy provided mbusd-ttyUSB0.conf to /etc/mbusd/
+3. Connect USB/RS-485 adapter to Nilan controller board and Raspberry's USB port. Check Nilan documentation where to connect and how.
+4. Configure mbusd for start, I used systemctl service option to load on boot. Configure by changing filename and port in file and start/enable command line if your usb-port other than /dev/ttyUSB0
+```
+systemctl enable mbusd@ttyUSB0.service
+```
+5. Start mbusd
 ```
 systemctl start mbusd@ttyUSB0.service
-systemctl enable mbusd@ttyUSB0.service
 ```
 
 ## Home assistant installation:
@@ -33,6 +36,7 @@ homeassistant:
 6. Edit some dashboard and create picture-element card and paste nilanec_picture-element-card.yaml into editor and save
 
 If everything works you should see following without Nilan power/energy consumption, as that is another card I decided to add to screenshot.
+
 ![Working picture-element-card](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/NilanEC%20example.png)
 
 ### Bugs
