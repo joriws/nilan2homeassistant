@@ -6,7 +6,7 @@ This repository contains Home Assistant configuration files and information how 
 - Nilan E/EC/EC9 with CTS-602 compatible controller. Control card is important one, not display.
 - USB RS-485 adapter
 
-!Architecture(https://github.dev/joriws/nilan2homeassistant/blob/9b076e4e739c9427c2481e4c9c6dda05c5942ce1/HA-comms.svg#L1)
+![Architecture](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/HA-comms.svg)
 
 ## Modbus gateway installation:
 1. Install mbusd gateway software into gateway hardware; I use Raspberry Pi Zero W with Raspbian. Other Linux computer should be fine.
@@ -32,11 +32,17 @@ homeassistant:
 5. Go to developement - Check configuration files and if OK, restart
 6. Edit some dashboard and create picture-element card and paste nilanec_picture-element-card.yaml into editor and save
 
+If everything works you should see following without Nilan power/energy consumption, as that is another card I decided to add to screenshot.
+![Working picture-element-card](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/NilanEC%20example.png)
+
 ### Bugs
 
-There might be bugs, please report or create pull requests.
+There might be bugs on picture card or in modbus-package, please report or create pull requests.
 
-Known issues:
+### Known issues:
 
-Home assistant and mbusd have some glitches and sensors might show "Unavailable". It will go away. It might be due to multithreaded architecture of mbusd which causes queries on top of each other. Some pages suggest "slave_sensor" configuration at Home Assistant's modbus configuration.
+- Home assistant and mbusd have some glitches and sensors might show "Unavailable". It will go away. It might be due to multithreaded architecture of mbusd which causes queries on top of each other. Some pages suggest "slave_sensor" configuration at Home Assistant's modbus configuration.
+- Raspberry might loose Wi-Fi connectivity - consult Raspbian for fixes
+- MDI icon set does not have icon for fan speed 4, so fan plus was used. On my setup fan speeds 1-3 are configured.
+
 
