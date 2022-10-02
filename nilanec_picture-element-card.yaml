@@ -1,0 +1,227 @@
+type: picture-elements
+image: http://homeassistant.local:8123/local/NilanEC.svg
+elements:
+  - type: icon
+    icon: mdi:fan
+    style:
+      top: 42%
+      left: 50%
+  - type: icon
+    icon: mdi:water
+    style:
+      top: 64%
+      left: 31%
+  - type: state-label
+    entity: sensor.nilanec_airtemp_effpct
+    style:
+      top: 32%
+      left: 50%
+  - type: state-label
+    entity: sensor.nilanec_input_t1_intake
+    style:
+      top: 4%
+      left: 23%
+  - type: state-label
+    entity: sensor.nilanec_input_t7_inlet
+    style:
+      top: 55%
+      left: 77%
+  - type: state-label
+    entity: sensor.nilanec_input_t6_evap
+    style:
+      top: 4%
+      left: 77%
+  - type: state-label
+    entity: sensor.nilanec_input_t15_room
+    style:
+      top: 55%
+      left: 24%
+  - type: state-label
+    entity: sensor.nilanec_input_t11_top
+    style:
+      top: 70%
+      left: 50%
+  - type: state-label
+    entity: sensor.nilanec_input_t12_bottom
+    style:
+      top: 89%
+      left: 50%
+  - type: state-label
+    entity: sensor.nilanec_input_rh
+    style:
+      top: 64%
+      left: 24%
+  - type: state-label
+    entity: sensor.nilanec_output_inletspeed
+    style:
+      top: 42%
+      left: 58%
+  - type: state-label
+    entity: sensor.nilanec_output_exhaustspeed
+    style:
+      top: 42%
+      left: 43%
+  - type: state-label
+    entity: sensor.nilanec_mode
+    prefix: 'Mode: '
+    style:
+      top: 48%
+      left: 50%
+  - type: state-label
+    entity: sensor.nilanec_state
+    style:
+      top: 53%
+      left: 50%
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_alarm_status
+        state_not: '0'
+    elements:
+      - type: icon
+        icon: mdi:alert
+        style:
+          top: 55%
+          left: 48%
+          '--paper-item-icon-color': red
+      - type: state-label
+        entity: sensor.nilanec_alarm_status
+        style:
+          top: 55%
+          left: 52%
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_airtemp_issummer
+        state: '1'
+    elements:
+      - type: icon
+        icon: mdi:sun-thermometer
+        entity: sensor.nilanec_airtemp_issummer
+        style:
+          top: 4%
+          left: 38%
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_airtemp_issummer
+        state: '0'
+    elements:
+      - type: icon
+        icon: mdi:snowflake-thermometer
+        entity: sensor.nilanec_airtemp_issummer
+        style:
+          top: 4%
+          left: 38%
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_output_waterheat
+        state: '1'
+    elements:
+      - type: icon
+        icon: mdi:lightning-bolt-circle
+        entity: sensor.nilanec_output_waterheat
+        style:
+          top: 66%
+          left: 44%
+          '--paper-item-icon-color': red
+      - type: icon
+        icon: mdi:lightning-bolt-circle
+        entity: sensor.nilanec_output_waterheat
+        style:
+          top: 66%
+          left: 56%
+          '--paper-item-icon-color': red
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_output_compressor
+        state: '1'
+    elements:
+      - type: icon
+        icon: mdi:pump
+        entity: sensor.nilanec_output_compressor
+        style:
+          top: 19%
+          left: 50%
+          '--paper-item-icon-color': green
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_output_compressor
+        state: '0'
+    elements:
+      - type: icon
+        icon: mdi:pump-off
+        entity: sensor.nilanec_output_compressor
+        style:
+          top: 19%
+          left: 50%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_output_defrosting
+        state_not: '0'
+    elements:
+      - type: icon
+        icon: mdi:snowflake-melt
+        entity: sensor.nilanec_output_defrosting
+        style:
+          top: 19%
+          left: 57%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_fan_speed_set
+        state: '1'
+    elements:
+      - type: icon
+        icon: mdi:fan-speed-1
+        entity: sensor.nilanec_fan_speed_set
+        style:
+          top: 19%
+          left: 43%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_fan_speed_set
+        state: '2'
+    elements:
+      - type: icon
+        icon: mdi:fan-speed-2
+        entity: sensor.nilanec_fan_speed_set
+        style:
+          top: 19%
+          left: 43%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_fan_speed_set
+        state: '3'
+    elements:
+      - type: icon
+        icon: mdi:fan-speed-3
+        entity: sensor.nilanec_fan_speed_set
+        style:
+          top: 19%
+          left: 43%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_fan_speed_set
+        state: '0'
+    elements:
+      - type: icon
+        icon: mdi:fan-off
+        entity: sensor.nilanec_fan_speed_set
+        style:
+          top: 19%
+          left: 43%
+          '--paper-item-icon-color': gray
+  - type: conditional
+    conditions:
+      - entity: sensor.nilanec_fan_speed_set
+        state: '4'
+    elements:
+      - type: icon
+        icon: mdi:fan
+        entity: sensor.nilanec_fan_speed_set
+        style:
+          top: 19%
+          left: 43%
+          '--paper-item-icon-color': gray

@@ -1,0 +1,614 @@
+modbus:  
+  - name: NilanEC
+    type: tcp
+    host: 192.168.9.140
+    port: 502
+    retry_on_empty: true
+    message_wait_milliseconds: 30
+    retries: 3
+    delay: 2
+    #climates:
+    #    - name: "NilanEC Set Temperature"
+    #      unique_id: NilanEC.TempSet
+    #      address: 1201
+    #      input_type: input
+    #      max_temp: 30
+    #      min_temp: 15
+    #      precision: 0
+    #      scale: 0.01
+    #      count: 1
+    #      target_temp_register: 1004
+    #      temp_step: 1
+    #      temperature_unit: °C
+    sensors:
+        # Display
+        - name: "NilanEC LED 1"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Display_LED1
+          state_class: measurement
+          input_type: input
+          address: 2000
+        - name: "NilanEC LED 2"
+          slave: 30
+          unique_id: NilanEC.Display_LED2
+          state_class: measurement
+          input_type: input
+          address: 2001
+        # compressor-heater
+        - name: "NilanEC Compressor"
+          address: 109
+          unique_id: NilanEC.Output.Compressor
+          input_type: holding
+          state_class: measurement
+          device_class: power
+          scan_interval: 60
+          slave: 30
+        - name: "NilanEC WaterHeat"
+          address: 116
+          unique_id: NilanEC.Output.WaterHeat
+          input_type: holding
+          state_class: measurement
+          device_class: power
+          scan_interval: 60
+          slave: 30
+        - name: "NilanEC.Output.Defrosting"
+          address: 125
+          unique_id: NilanEC.Output.Defrosting
+          input_type: holding
+          state_class: measurement
+          device_class: power
+          scan_interval: 60
+          slave: 30
+        # temperatures
+        - name: "NilanEC Temperature Controller"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T0_Controller
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 200
+          count: 1
+        - name: "NilanEC Temperature Intake"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T1_Intake
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 201
+          count: 1
+        #- name: NilanEC.Input.T2_Inlet
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T2_Inlet
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 202
+        #  count: 1
+        #- name: NilanEC.Input.T3_Exhaust
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T3_Exhaust
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 203
+        #  count: 1
+        #- name: NilanEC.Input.T4_Outlet
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T4_Outlet
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 204
+        #  count: 1
+        - name: "NilanEC Temperature Condenser"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T5_Cond
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 205
+          count: 1
+        - name: "NilanEC Temperature Evaporator"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T6_Evap
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 206
+          count: 1
+        - name: "NilanEC Temperature Inlet"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T7_Inlet
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 207
+          count: 1
+        - name: "NilanEC Temperature Outdoor"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T8_Outdoor
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 208
+          count: 1
+        #- name: NilanEC.Input.T9_Heater
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T9_Heater
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 209
+        #  count: 1
+        - name: "NilanEC Temperature External"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T10_Extern
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 210
+          count: 1
+        - name: "NilanEC Temperature Water Top"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T11_Top
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 211
+          count: 1
+        - name: "NilanEC Temperature Water Bottom"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T12_Bottom
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 212
+          count: 1
+        #- name: NilanEC.Input.T13_Return
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T13_Return
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 213
+        #  count: 1
+        #- name: NilanEC.Input.T14_Supply
+        #  slave: 30
+        #  unique_id: NilanEC.Input.T14_Supply
+        #  device_class: temperature
+        #  unit_of_measurement: °C
+        #  state_class: measurement
+        #  input_type: input
+        #  data_type: int16
+        #  precision: 2
+        #  scale: 0.01
+        #  address: 214
+        #  count: 1
+        - name: "NilanEC Temperature Room"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.T15_Room
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 215
+          count: 1
+        # temperature deep settings
+        - name: "NilanEC Temperature Summer Min"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.AirTemp.TempMinSum
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1201
+          count: 1
+        - name: "NilanEC Temperature Winter Min"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.AirTemp.TempMinWin
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1202
+          count: 1
+        - name: "NilanEC Temperature Summer Max"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.AirTemp.TempMaxSum
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1203
+          count: 1
+        - name: "NilanEC Temperature Winter Max"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.AirTemp.TempMaxWin
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1204
+          count: 1
+        - name: "NilanEC Temperature Summer/Winter Limit"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.AirTemp.TempSummer
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1205
+          count: 1
+        - name: "NilanEC Water Top temperature setpoint (Electric)"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.Hotwater.TempSet_T11
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 1700
+          count: 1
+        - name: "NilanEC Water Bottom temperature setpoint (Compressor)"
+          slave: 30
+          scan_interval: 900
+          unique_id: NilanEC.Hotwater.TempSet_T12
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 1701
+          count: 1
+
+        # humidity
+        - name: "NilanEC Relative Humidity"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Input.RH
+          device_class: humidity
+          unit_of_measurement: "%"
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 221
+          count: 1
+        # control
+        - name: "NilanEC Run State Actual"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Control.RunAct
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 1000
+          count: 1
+        - name: "NilanEC Mode Actual"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Control.ModeAct
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 1001
+          count: 1
+        - name: "NilanEC State"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Control.State
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 1002
+          count: 1
+        - name: "NilanEC Duration In State"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Control.SecInState
+          device_class: duration
+          unit_of_measurement: s
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 1003
+          count: 1
+        - name: "NilanEC Fan Speed Set"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Control.VentSet
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          address: 1003
+          count: 1
+        # alarms
+        - name: "NilanEC Alarm Status"
+          slave: 30
+          scan_interval: 300
+          unique_id: NilanEC.Alarm.Status
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 400
+          count: 1
+        - name: "NilanEC Alarm 1 ID"
+          slave: 30
+          scan_interval: 300
+          unique_id: NilanEC.Alarm.List_1_ID
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 401
+          count: 1
+        - name: "NilanEC Alarm 2 ID"
+          slave: 30
+          scan_interval: 300
+          unique_id: NilanEC.Alarm.List_2_ID
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 404
+          count: 1
+        - name: "NilanEC Alarm 3 ID"
+          slave: 30
+          scan_interval: 300
+          unique_id: NilanEC.Alarm.List_3_ID
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          address: 407
+          count: 1
+        # airtemp
+        - name: "NilanEC IsSummer"
+          slave: 30
+          scan_interval: 300
+          unique_id: NilanEC.AirTemp.IsSummer
+          state_class: measurement
+          input_type: input
+          address: 1200
+        - name: "NilanEC Temperature Set"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.AirTemp.TempInletSet
+          device_class: temperature
+          unit_of_measurement: °C
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 0
+          offset: 1
+          scale: 0.01
+          address: 1201
+          count: 1
+        - name: "NilanEC Efficiency %"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.AirTemp.EffPct
+          device_class: power_factor
+          unit_of_measurement: "%"
+          state_class: measurement
+          input_type: input
+          data_type: int16
+          precision: 1
+          scale: 0.01
+          address: 1204
+          count: 1
+        # Output
+        - name: "NilanEC Fan Exhaust Speed"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Output.ExhaustSpeed
+          device_class: power_factor
+          unit_of_measurement: "%"
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 200
+          count: 1
+        - name: "NilanEC Fan Inlet Speed"
+          slave: 30
+          scan_interval: 60
+          unique_id: NilanEC.Output.InletSpeed
+          device_class: power_factor
+          unit_of_measurement: "%"
+          state_class: measurement
+          input_type: holding
+          data_type: int16
+          precision: 0
+          scale: 0.01
+          address: 201
+          count: 1
+
+# create cleartext sensors and binary sensor          
+template:
+  sensor:
+    - name: "NilanEC Mode"
+      unique_id: NilanEC.Control.ModeAct.clear
+      state: >
+        {% set CMA = states('sensor.nilanec_control_modeact') | int %}
+        {% if CMA == 0 %}
+          Off
+        {% elif CMA == 1 %}
+          Heat
+        {% elif CMA == 2 %}
+          Cool
+        {% elif CMA == 3 %}
+          Auto
+        {% elif CMA == 4 %}
+          Service
+        {% else %}
+          Unknown State!
+        {% endif %}
+
+    - name: "NilanEC State"
+      unique_id: NilanEC.Control.State.clear
+      state: >
+        {% set CS = states('sensor.nilanec_control_state') | int %}
+        {% if CS == 0 %}
+          Off
+        {% elif CS == 1 %}
+          Shift
+        {% elif CS == 2 %}
+          Stop
+        {% elif CS == 3 %}
+          Start
+        {% elif CS == 4 %}
+          Standby
+        {% elif CS == 5 %}
+          Ventilation stop
+        {% elif CS == 6 %}
+          Ventilation
+        {% elif CS == 7 %}
+          Heating
+        {% elif CS == 8 %}
+          Cooling
+        {% elif CS == 9 %}
+          Hot water
+        {% elif CS == 10 %}
+          Legionella
+        {% elif CS == 11 %}
+          Cooling + hot water
+        {% elif CS == 12 %}
+          Central heating
+        {% elif CS == 13 %}
+          Defrost
+        {% elif CS == 14 %}
+          Frost secure
+        {% elif CS == 15 %}
+          Service
+        {% elif CS == 16 %}
+          Alarm
+        {% elif CS == 17 %}
+          Heating + hot water
+        {% else %}
+          Unknown State!
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
