@@ -80,13 +80,13 @@ elements:
       - type: icon
         icon: mdi:alert
         style:
-          top: 55%
+          top: 58%
           left: 48%
           '--paper-item-icon-color': red
       - type: state-label
         entity: sensor.nilanec_alarm_status
         style:
-          top: 55%
+          top: 58%
           left: 52%
   - type: conditional
     conditions:
