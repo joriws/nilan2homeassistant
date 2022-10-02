@@ -39,6 +39,12 @@ If everything works you should see following without Nilan power/energy consumpt
 
 ![Working picture-element-card](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/NilanEC%20example.png)
 
+## Enhancements / Todo
+
+- It would be nice to be able to combine modbus sensors into sensor attributes. Like hotwater bottom sensor would have attribute hotwater compressor setting when compressor can turn off. There could be a lot of combining of data.
+- Picture-element-card Climate - I could not make it work.
+- Other HA-based setting over modbus, like set fan speed by automation or requested temperature.
+
 ### Bugs
 
 There might be bugs on picture card or in modbus-package, please report or create pull requests.
