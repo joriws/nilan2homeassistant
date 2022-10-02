@@ -1,6 +1,25 @@
 # nilan2homeassistant
 
-This repository contains Home Assistant configuration files and information how to natively integrate Nilan E-series heatpumps into Home Assistant. As I don't have EC9 with floor heating support I could not prepare temperature out to batter/floor heating. If you have EC9 and want to enhance, it should be fairly easy. Please create pull request after making configuration work.
+This repository contains Home Assistant configuration files and information how to natively integrate Nilan E-series heatpumps into Home Assistant. As I don't have EC9 with floor heating support I could not prepare temperature out to battery/floor heating. If you have EC9 and want to enhance, it should be fairly easy. Please create pull request after making configuration work.
+
+Suspected **untested** floor circuit sensor configuration, add to modbus_nilanec.yaml in sensor -section:
+```
+- name: "NilanEC CentralHeat Setpoint"
+  slave: 30
+  scan_interval: 60
+  unique_id: NilanEC.CentralHeat.HeatExtSet
+  device_class: temperature
+  unit_of_measurement: °C
+  state_class: measurement
+  input_type: input
+  data_type: int16
+  precision: 1
+  scale: 0.01
+  address: 1800
+  count: 1
+```
+
+!NOTE! Writing to modbus registers is not done. It requires climates and switches configuration. Check todo..
 
 ## Hardware requirements:
 - Nilan E/EC/EC9 with CTS-602 compatible controller. Control card is important one, not display.
@@ -43,8 +62,9 @@ If everything works you should see following without Nilan power/energy consumpt
 
 - It would be nice to be able to combine modbus sensors into sensor attributes. Like hotwater bottom sensor would have attribute hotwater compressor setting when compressor can turn off. There could be a lot of combining of data.
 - Picture-element-card Climate - I could not make it work.
-- Other HA-based setting over modbus, like set fan speed by automation or requested temperature.
+- Other HA-based setting over modbus, like **set** fan speed by automation or requested temperature.
 - Icon coloring based on state
+- Verified EC9 setup
 
 ### Bugs
 
