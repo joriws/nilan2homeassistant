@@ -72,9 +72,11 @@ There might be bugs on picture card or in modbus-package, please report or creat
 
 ### Known issues:
 
-- Home assistant and mbusd have some glitches and sensors might show "Unavailable". It will go away. It might be due to multithreaded architecture of mbusd which causes queries on top of each other. Some pages suggest "slave_sensor" configuration at Home Assistant's modbus configuration.
-- Raspberry might loose Wi-Fi connectivity - consult Raspbian for fixes
-- MDI icon set does not have icon for fan speed 4, so fan plus was used. On my setup fan speeds 1-3 are configured.
-- Picture-element-card was developed on PC browser. Android phone homeassistant app has problems displaying the graph.
+- Home assistant and mbusd have some glitches and sensors might show "Unavailable". Most probably due to next bullet if Rpi wifi goes to powersave it will make modbustcp queries out of sync. It will go away. It might also be due to multithreaded architecture of mbusd which causes queries on top of each other. Some pages suggest "slave_sensor" configuration at Home Assistant's modbus configuration.
+- Raspberry might loose Wi-Fi connectivity - consult Raspbian for fixes; to query: **iw wlan0 get power_save**
+  - https://raspberrypi.stackexchange.com/questions/96606/make-iw-wlan0-set-power-save-off-permanent
+  - adding a line to /etc/rc.local "**/sbin/iwconfig wlan0 power off**". Add that ahead of exit 0 and it will run at every boot.
+- MDI icon set does not have icon for fan speed 4, so fan plus was used for speed4. On my home setup fan speeds 1-3 are configured and.
+
 
 
