@@ -47,7 +47,6 @@ systemctl start mbusd@ttyUSB0.service
 4. Add configuration lines under homeassistant: -tag
 ```
 homeassistant:
-  customize: !include customize.yaml
   packages:
     nilanec: !include modbus_nilanec.yaml
 ```
