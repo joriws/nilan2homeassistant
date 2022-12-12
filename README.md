@@ -7,7 +7,7 @@ This repository contains Home Assistant configuration files and information how 
 ## Hardware requirements:
 - Nilan E/EC/EC9 with CTS-602 compatible controller. Control card is important one, not display.
 - USB RS-485 adapter
-- Linux computer to run MbusD-gateway software (Raspberry with raspian or really any)
+- Linux computer to run MbusD-gateway software (Raspberry with raspbian or really any)
 
 The architecture is like this as typically modbus slave such Nilan is not close to Home Assistant running computer so you need some kind of remote connection, which is implemented over WiFi via Raspberry Zero W on my setup.
 
