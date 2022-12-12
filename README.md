@@ -1,23 +1,6 @@
 # nilan2homeassistant
 
-This repository contains Home Assistant configuration files and information how to natively integrate Nilan E-series heatpumps into Home Assistant. As I don't have EC9 with floor heating support I could not prepare temperature out to battery/floor heating. If you have EC9 and want to enhance, it should be fairly easy. Please create pull request after making configuration work.
-
-Suspected **untested** floor circuit sensor configuration, add to modbus_nilanec.yaml in sensor -section:
-```
-- name: "NilanEC CentralHeat Setpoint"
-  slave: 30
-  scan_interval: 60
-  unique_id: NilanEC.CentralHeat.HeatExtSet
-  device_class: temperature
-  unit_of_measurement: °C
-  state_class: measurement
-  input_type: input
-  data_type: int16
-  precision: 1
-  scale: 0.01
-  address: 1800
-  count: 1
-```
+This repository contains Home Assistant configuration files and information how to natively integrate Nilan E-series heatpumps into Home Assistant. As I don't have EC9 with floor heating support I could not prepare temperature out to battery/floor heating. If you have EC9 and want to enhance, it should be doable although I understand you need to emulate keypresses to set floor heating circuit settings. Please create pull request after making configuration work.
 
 !NOTE! Writing to modbus registers is not done. It requires climates and switches configuration. Check todo..
 
