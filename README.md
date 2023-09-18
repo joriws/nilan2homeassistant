@@ -11,7 +11,7 @@ This repository contains Home Assistant configuration files and information how 
 
 The architecture is like this as typically modbus slave such Nilan is not close to Home Assistant running computer so you need some kind of remote connection, which is implemented over WiFi via Raspberry Zero W on my setup.
 
-![Architecture](https://github.com/joriws/nilan2homeassistant/blob/b7b414c79438eca80327e0e055e847442bf7b342/HA-comms.svg)
+![Comms architecture](https://github.com/joriws/nilan2homeassistant/blob/main/HA-comms.svg)
 
 ## Modbus gateway installation:
 1. Install mbusd gateway software into gateway hardware; I use Raspberry Pi Zero W with Raspbian. Other Linux computer should be fine. Use mbusd instructions.
